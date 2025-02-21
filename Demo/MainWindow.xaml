@@ -1,0 +1,22 @@
+﻿<Window x:Class="Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Demo Application" Height="800" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Меню -->
+        <StackPanel Grid.Column="0" Background="White" Margin="15">
+            <Image Source="logo.png" Height="100" Margin="0,0,0,20"/>
+            <Button Content="Квартиры" Click="btnApartments_Click" Height="36" FontFamily="Comic Sans MS" FontSize="12" Foreground="White" Background="#04A0FF"/>
+            <Button Content="Дома" Click="btnHouses_Click" Height="36" FontFamily="Comic Sans MS" FontSize="12" Foreground="White" Background="#04A0FF"/>
+            <Button Content="Жилые комплексы" Click="btnResidentialComplexes_Click" Height="36" FontFamily="Comic Sans MS" FontSize="12" Foreground="White" Background="#04A0FF"/>
+        </StackPanel>
+
+        <!-- Основное содержимое -->
+        <Frame Name="MainFrame" Grid.Column="1"/>
+    </Grid>
+</Window>

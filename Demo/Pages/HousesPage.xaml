@@ -1,0 +1,112 @@
+﻿<Page x:Class="Demo.Pages.HousesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      Title="Управление домами">
+    <Grid>
+        <StackPanel>
+            <!-- Заголовок -->
+            <StackPanel Orientation="Horizontal" Margin="15">
+                <TextBlock Text="Управление домами" 
+                         FontSize="16" 
+                         FontWeight="Bold" 
+                         Margin="10"/>
+            </StackPanel>
+
+            <!-- Фильтры -->
+            <GroupBox Header="Фильтры" Margin="15">
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox x:Name="ComplexFilterComboBox" 
+                            Width="200" 
+                            Margin="5"
+                            DisplayMemberPath="Name"
+                            SelectedValuePath="ID"/>
+                    <xctk:WatermarkTextBox x:Name="AddressFilterTextBox" 
+                                         Width="200" 
+                                         Margin="5"
+                                         Watermark="Улица или номер дома"/>
+                    <Button Content="Сброс" 
+                          Margin="5" 
+                          Padding="10"
+                          Click="ResetFilters_Click"/>
+                    <Button Content="Применить" 
+                          Margin="5" 
+                          Padding="10"
+                          Click="Filter_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Список домов -->
+            <DataGrid x:Name="HousesGrid" 
+                    AutoGenerateColumns="False" 
+                    Margin="15"
+                    CanUserAddRows="False"
+                    SelectionChanged="HousesGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ЖК" 
+                                      Binding="{Binding ResidentialComplex.Name}"/>
+                    <DataGridTextColumn Header="Улица" 
+                                      Binding="{Binding Street}"/>
+                    <DataGridTextColumn Header="Номер дома" 
+                                      Binding="{Binding Number}"/>
+                    <DataGridTextColumn Header="Статус ЖК" 
+                                      Binding="{Binding ResidentialComplex.Status}"/>
+                    <DataGridTextColumn Header="Стоимость стр-ва" 
+                                      Binding="{Binding BuildingCost}"/>
+                    <DataGridTextColumn Header="Доб. стоимость" 
+                                      Binding="{Binding HouseValueAdded}"/>
+                    <DataGridTextColumn Header="Продано" 
+                                      Binding="{Binding SoldCount}"/>
+                    <DataGridTextColumn Header="В продаже" 
+                                      Binding="{Binding AvailableCount}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Удалить" 
+                                      Click="DeleteHouse_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Форма редактирования -->
+            <GroupBox Header="Редактирование дома" Margin="15">
+                <StackPanel>
+                    <ComboBox x:Name="ComplexComboBox" 
+                            Margin="5"
+                            DisplayMemberPath="Name"
+                            SelectedValuePath="ID"/>
+
+                    <xctk:WatermarkTextBox x:Name="StreetTextBox" 
+                                        Margin="5" 
+                                        Watermark="Улица"/>
+
+                    <xctk:WatermarkTextBox x:Name="NumberTextBox" 
+                                        Margin="5" 
+                                        Watermark="Номер дома"/>
+
+                    <xctk:WatermarkTextBox x:Name="BuildingCostTextBox" 
+                                        Margin="5" 
+                                        Watermark="Стоимость строительства"/>
+
+                    <xctk:WatermarkTextBox x:Name="ValueAddedTextBox" 
+                                        Margin="5" 
+                                        Watermark="Добавочная стоимость"/>
+
+                    <StackPanel Orientation="Horizontal" 
+                              HorizontalAlignment="Right">
+                        <Button Content="Новый дом" 
+                              Margin="5" 
+                              Padding="10"
+                              Click="NewHouse_Click"/>
+                        <Button Content="Сохранить" 
+                              Margin="5" 
+                              Padding="10"
+                              Click="SaveHouse_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Page>
